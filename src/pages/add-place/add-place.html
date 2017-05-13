@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>add-place</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <h3 text-center>Add Your New Favourite Place</h3>
+  <ion-list>
+      <ion-item>
+          <ion-label fixed>Title</ion-label>
+          <ion-input type="text" name="title" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-textarea type="textarea" name="description" ngModel required></ion-textarea>
+      </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block outline type="button" icon-left (click)="locateMe()">
+          <ion-icon name="locate">Locate me</ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block outline type="button" icon-left (click)="selectOnMap()">
+          <ion-icon name="map">Select on map</ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row ion-button block outline type="button" icon-left (click)="openCamera()">
+      <ion-icon name="camera">Open Camera</ion-icon>
+    </ion-row>
+  </ion-grid>
+</ion-content>
