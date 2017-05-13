@@ -1,1 +1,17 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button ion-item (click)="onLoad(rootPage)">Home</button>
+            <button ion-item (click)="onLoad(rootPage)">Add New Place</button>
+            <button ion-item (click)="onLoad(rootPage)">Places</button>
+            <button ion-item (click)="onLoad(rootPage)">Settings</button>
+            <button ion-item (click)="onLoad(rootPage)">Contact</button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #nav></ion-nav>
