@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddPlacePage } from '../pages/add-place/add-place';
 import { SetLocationPage } from '../pages/set-location/set-location';
+import { PlacesServices } from '../services/places';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
@@ -39,6 +40,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     SplashScreen,
     Geolocation,
     Camera,
+    PlacesServices,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

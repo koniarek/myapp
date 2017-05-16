@@ -46,7 +46,7 @@
     <ion-row ion-button block outline type="button" icon-left (click)="openCamera()">
       <ion-icon name="camera">Open Camera</ion-icon>
     </ion-row>
-      <ion-row>
+      <ion-row *ngIf="imageUrl != ''">
           <ion-col>
               <img [src]="imageUrl" alt="">
           </ion-col>

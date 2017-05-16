@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
+import { NgForm } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SetLocationPage } from '../set-location/set-location'
 import { Location } from '../../models/location';
+import {PlacesServices} from "../../services/places";
 
 @IonicPage()
 @Component({
@@ -25,10 +27,22 @@ export class AddPlacePage {
       private geolocation: Geolocation,
       private loadingCtrl: LoadingController,
       private toastCtrl: ToastController,
-      private camera: Camera){}
+      private camera: Camera,
+      private placesService: PlacesServices){}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPlacePage');
+  }
+  onSubmit(form: NgForm) {
+      this.placesService.addPlace(form.value.title, form.value.description, this.location, this.imageUrl);
+      form.reset();
+      this.location = {
+          lat: 51.1000000,
+          lng: 17.0333300
+      };
+      this.locationIsSet = false;
+      this.imageUrl = '';
+
   }
 
   selectOnMap() {
