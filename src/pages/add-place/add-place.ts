@@ -13,7 +13,8 @@ export class AddPlacePage {
     location: Location = {
         lat: 51.1000000,
         lng: 17.0333300
-    }
+    };
+    locationIsSet = false;
 
       constructor(
       public navCtrl: NavController,
@@ -25,8 +26,17 @@ export class AddPlacePage {
   }
 
   selectOnMap() {
-        const modal = this.modalCtrl.create(SetLocationPage, {location: this.location});
+        const modal = this.modalCtrl.create(SetLocationPage, {location: this.location,
+        isSet: this.locationIsSet});
         modal.present();
+        modal.onDidDismiss(
+            data => {
+                if(data) {
+                    this.location = data.location;
+                    this.locationIsSet = true;
+                }
+            }
+        );
   }
 
 }

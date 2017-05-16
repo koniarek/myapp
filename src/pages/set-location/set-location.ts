@@ -15,9 +15,11 @@ export class SetLocationPage {
       public navParams: NavParams,
       public viewCtrl: ViewController) {
 
-      this.location = this.navParams.get('location');
+    this.location = this.navParams.get('location');
+    if (this.navParams.get('isSet')) {
+      this.marker = this.location;
+    }
   }
-
   setMarker(event: any) {
     console.log(event);
     this.marker = new Location(event.coords.lat, event.coords.lng);
