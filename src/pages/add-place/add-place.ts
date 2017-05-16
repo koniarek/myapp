@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
-
+import {IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
 import { SetLocationPage } from '../set-location/set-location'
 import { Location } from '../../models/location';
 
@@ -19,7 +20,11 @@ export class AddPlacePage {
       constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
-      public modalCtrl: ModalController){}
+      public modalCtrl: ModalController,
+      private geolocation: Geolocation,
+      private loadingCtrl: LoadingController,
+      private toastCtrl: ToastController,
+      private camera: Camera){}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPlacePage');
@@ -35,6 +40,32 @@ export class AddPlacePage {
                     this.location = data.location;
                     this.locationIsSet = true;
                 }
+            }
+        );
+  }
+
+  locateMe() {
+    const loader = this.loadingCtrl.create({
+        content: 'Getting your location...'
+    });
+    loader.present();
+    this.geolocation.getCurrentPosition()
+        .then(
+            location => {
+                loader.dismiss();
+                this.location.lat = location.coords.latitude;
+                this.location.lng = location.coords.longitude;
+                this.locationIsSet = true;
+            }
+        )
+        .catch(
+            error => {
+                loader.dismiss();
+                const toast = this.toastCtrl.create({
+                    message: 'Could get connection',
+                    duration: 2500
+                })
+                toast.present();
             }
         );
   }
