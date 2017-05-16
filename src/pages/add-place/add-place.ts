@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SetLocationPage } from '../set-location/set-location'
 import { Location } from '../../models/location';
 
@@ -16,6 +16,7 @@ export class AddPlacePage {
         lng: 17.0333300
     };
     locationIsSet = false;
+    imageUrl = '';
 
       constructor(
       public navCtrl: NavController,
@@ -68,6 +69,24 @@ export class AddPlacePage {
                 toast.present();
             }
         );
+  }
+
+  openCamera() {
+          this.camera.getPicture({
+              encodingType: this.camera.EncodingType.JPEG,
+              correctOrientation: true
+          })
+              .then(
+                  imageData => {
+                      console.log(imageData);
+                      this.imageUrl = imageData;
+                  }
+              )
+              .catch(
+                  error => {
+                      console.log(error);
+                  }
+              )
   }
 
 }
