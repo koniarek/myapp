@@ -9,8 +9,17 @@ import { Location } from '../../models/location';
 })
 export class SetLocationPage {
   location: Location;
+  marker: Location;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.location = this.navParams.get('location');
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams) {
+
+      this.location = this.navParams.get('location');
+  }
+
+  setMarker(event: any) {
+    console.log(event);
+    this.marker = new Location(event.coords.lat, event.coords.lng);
   }
 }
