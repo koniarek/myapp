@@ -1,3 +1,3 @@
 export class Location {
-    constructor(public lan: number, public lng: number){}
+    constructor(public lat: number, public lng: number){}
 }
