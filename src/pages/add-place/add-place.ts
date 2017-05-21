@@ -5,7 +5,10 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SetLocationPage } from '../set-location/set-location'
 import { Location } from '../../models/location';
-import {PlacesServices} from "../../services/places";
+import { PlacesServices } from "../../services/places";
+import { File } from '@ionic-native/file';
+
+declare var cordova: any;
 
 @IonicPage()
 @Component({
@@ -28,7 +31,8 @@ export class AddPlacePage {
       private loadingCtrl: LoadingController,
       private toastCtrl: ToastController,
       private camera: Camera,
-      private placesService: PlacesServices){}
+      private placesService: PlacesServices,
+      private file: File){}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPlacePage');
@@ -92,13 +96,36 @@ export class AddPlacePage {
           })
               .then(
                   imageData => {
+                      const currentName = imageData.replace(/^.*[\\\/]/, '');
+                      const path = imageData.replace(/[^\/]*$/, '');
+                      this.file.moveFile(path, currentName, cordova.file.dataDirectory, currentName)
+                          .then(
+                              (data) => {
+                                  this.imageUrl = data.nativeURL;
+                                  this.camera.cleanup();
+                              }
+                          )
+                          .catch(
+                              (error) => {
+                              this.imageUrl = ''
+                              const toast = this.toastCtrl.create({
+                                  message: 'Could not to save image',
+                                  duration: 2500
+                              });
+                              toast.present();
+                              this.camera.cleanup();
+                          })
                       console.log(imageData);
                       this.imageUrl = imageData;
                   }
               )
               .catch(
                   error => {
-                      console.log(error);
+                      const toast = this.toastCtrl.create({
+                          message: 'Could not to do image',
+                          duration: 2500
+                      });
+                      toast.present();
                   }
               )
   }

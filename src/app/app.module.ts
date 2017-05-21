@@ -12,6 +12,7 @@ import { SetLocationPage } from '../pages/set-location/set-location';
 import { PlacesServices } from '../services/places';
 import { PlacePage } from '../pages/place/place';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { File } from '@ionic-native/file';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     SplashScreen,
     Geolocation,
     Camera,
+    File,
     PlacesServices,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
