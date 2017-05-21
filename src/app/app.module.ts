@@ -13,19 +13,20 @@ import { PlacesServices } from '../services/places';
 import { PlacePage } from '../pages/place/place';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { File } from '@ionic-native/file';
-
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AddPlacePage,
-      SetLocationPage,
-      PlacePage,
+    SetLocationPage,
+    PlacePage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AgmCoreModule.forRoot({
           apiKey: 'AIzaSyDxMOkxYp-nDWXXESnCUFrZgXlloZl2XFc'
       })
@@ -34,9 +35,9 @@ import { File } from '@ionic-native/file';
   entryComponents: [
     MyApp,
     HomePage,
-      AddPlacePage,
-      SetLocationPage,
-      PlacePage
+    AddPlacePage,
+    SetLocationPage,
+    PlacePage
   ],
   providers: [
     StatusBar,

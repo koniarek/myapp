@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { Place } from '../../models/place';
 import { PlacesServices } from '../../services/places';
@@ -7,11 +7,18 @@ import { PlacePage } from '../place/place';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit
+{
   places: Place[] = [];
-  constructor(public navCtrl: NavController, private placesService: PlacesServices, private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, private placesService: PlacesServices, private modalCtrl: ModalController) {}
 
+  ngOnInit() {
+    this.placesService.fetchPlaces()
+        .then(
+            (places: Place[]) => this.places = places
+        );
   }
+
   ionViewWillEnter() {
     this.places = this.placesService.loadPlaces();
   }
