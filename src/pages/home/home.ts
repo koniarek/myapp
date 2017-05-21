@@ -1,4 +1,4 @@
-import { Component } from '@angular/coreioni';
+import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { Place } from '../../models/place';
 import { PlacesServices } from '../../services/places';
