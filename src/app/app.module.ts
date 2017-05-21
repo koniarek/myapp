@@ -10,7 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { AddPlacePage } from '../pages/add-place/add-place';
 import { SetLocationPage } from '../pages/set-location/set-location';
 import { PlacesServices } from '../services/places';
-
+import { PlacePage } from '../pages/place/place';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
@@ -19,7 +19,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     MyApp,
     HomePage,
     AddPlacePage,
-      SetLocationPage
+      SetLocationPage,
+      PlacePage,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     MyApp,
     HomePage,
       AddPlacePage,
-      SetLocationPage
+      SetLocationPage,
+      PlacePage
   ],
   providers: [
     StatusBar,

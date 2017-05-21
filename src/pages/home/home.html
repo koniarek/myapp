@@ -12,9 +12,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let place of places" (click)="openPlace(place)">
+  <ion-card *ngFor="let place of places; let i = index;" (click)="openPlace(place, index)">
     <img [src]="place.imageUrl" alt="">
-    <ion-card-content>
+    <ion-card-content text-cente>
       <ion-card-title>{{place.title}}</ion-card-title>
       <p>{{place.description}}</p>
     </ion-card-content>
